@@ -1,0 +1,62 @@
+{"id": "rag-01", "section": "xiaolinnote/rag", "page_id": "xiaolinnote/rag/13_multi_retrieval", "question": "多路召回具体是怎么做的？", "answer_hint": "向量+BM25 双路召回，多 Query 扩展，RRF 融合后送 Rerank 精排"}
+{"id": "rag-02", "section": "xiaolinnote/rag", "page_id": "xiaolinnote/rag/5_semantic_cuts", "question": "怎么防止切分的时候把一句话从中间截断？", "answer_hint": "重叠切割兜底、语义边界切割、句子窗口检索、父子切割、Contextual Retrieval"}
+{"id": "rag-03", "section": "xiaolinnote/rag", "page_id": "xiaolinnote/rag/4_chunking", "question": "父子切割是什么意思，为什么能同时兼顾检索精度和上下文完整？", "answer_hint": "小块检索定位、大块返回上下文，通过 ID 关联，存储量翻倍"}
+{"id": "rag-04", "section": "xiaolinnote/rag", "page_id": "xiaolinnote/rag/18_evaluation", "question": "怎么判断问题出在检索层还是生成层？", "answer_hint": "Hit@K/MRR 衡量检索层，Faithfulness/Answer Relevancy 衡量生成层"}
+{"id": "rag-05", "section": "xiaolinnote/rag", "page_id": "xiaolinnote/rag/11_retrieval_types", "question": "向量检索和 BM25 各自的盲区是什么？", "answer_hint": "BM25 不懂同义词，向量检索对专有名词和型号类精确词容易漏"}
+{"id": "llm-01", "section": "xiaolinnote/llm", "page_id": "xiaolinnote/llm/lora", "question": "LoRA 除了减少参数量还有什么好处？", "answer_hint": "低秩分解、可插拔切换、多任务适配、训练成本低"}
+{"id": "llm-02", "section": "xiaolinnote/llm", "page_id": "xiaolinnote/llm/kv_cache_prompt_caching", "question": "KV Cache 是怎么省下重复计算的？", "answer_hint": "缓存已计算的 K/V，自回归解码时不再重算前缀，显存换速度"}
+{"id": "llm-03", "section": "xiaolinnote/llm", "page_id": "xiaolinnote/llm/23_long_context_lost_middle", "question": "为什么长上下文中问中间位置的信息容易被忽略？", "answer_hint": "Lost in the Middle，注意力分布不均，首尾信息更易被关注"}
+{"id": "llm-04", "section": "xiaolinnote/llm", "page_id": "xiaolinnote/llm/mha_mqa_gqa_flash_attention", "question": "MQA 和 GQA 是为了解决什么问题？", "answer_hint": "MHA 的 KV 显存与带宽开销大，MQA/GQA 通过共享 K/V 头降低开销"}
+{"id": "llm-05", "section": "xiaolinnote/llm", "page_id": "xiaolinnote/llm/quantization", "question": "INT4 量化有哪些常见方案，实际怎么选？", "answer_hint": "AWQ/GPTQ/GGUF 等，按精度损失、推理框架和硬件支持选"}
+{"id": "tools-01", "section": "xiaolinnote/tools", "page_id": "xiaolinnote/tools/5_mcp_components", "question": "MCP 由哪几部分组成？", "answer_hint": "Host、Client、Server，以及 Resources/Prompts/Tools 等原语"}
+{"id": "tools-02", "section": "xiaolinnote/tools", "page_id": "xiaolinnote/tools/11_fc_skill_mcp", "question": "Function Calling、Skill、MCP 这三个有什么区别？", "answer_hint": "FC 是模型能力，Skill 是封装好的能力包，MCP 是标准协议"}
+{"id": "tools-03", "section": "xiaolinnote/tools", "page_id": "xiaolinnote/tools/14_sse_vs_websocket", "question": "SSE 和 WebSocket 有什么区别和局限？", "answer_hint": "SSE 单向服务端推送、基于 HTTP，WebSocket 全双工"}
+{"id": "tools-04", "section": "xiaolinnote/tools", "page_id": "xiaolinnote/tools/17_tool_routing", "question": "工具特别多的时候怎么减少 Token 并避免选错工具？", "answer_hint": "工具检索/分组、分层路由、动态裁剪工具列表"}
+{"id": "tools-05", "section": "xiaolinnote/tools", "page_id": "xiaolinnote/tools/18_tool_reliability", "question": "工具调用参数格式非法或者超时失败了怎么容错？", "answer_hint": "参数校验与重试、错误信息回喂模型、超时降级与兜底"}
+{"id": "langchain-01", "section": "xiaolinnote/langchain", "page_id": "xiaolinnote/langchain/chain", "question": "LangChain 里的 Chain 是什么，核心作用是什么？", "answer_hint": "把多个组件串成可复用的调用流程，统一输入输出"}
+{"id": "langchain-02", "section": "xiaolinnote/langchain", "page_id": "xiaolinnote/langchain/langchain_vs_langgraph", "question": "LangChain 和 LangGraph 的核心区别是什么？", "answer_hint": "Chain 是线性流程，LangGraph 是图结构、支持循环与状态管理"}
+{"id": "langchain-03", "section": "xiaolinnote/langchain", "page_id": "xiaolinnote/langchain/memory", "question": "LangChain 怎么做短期记忆和长期记忆？", "answer_hint": "短期用对话缓冲/摘要，长期用向量库等外部存储检索"}
+{"id": "langchain-04", "section": "xiaolinnote/langchain", "page_id": "xiaolinnote/langchain/tool_registration", "question": "在 LangChain 里怎么给 Agent 注册工具？", "answer_hint": "用 @tool 装饰器或 Tool 类定义名称、描述与参数 schema"}
+{"id": "langchain-05", "section": "xiaolinnote/langchain", "page_id": "xiaolinnote/langchain/deep_research", "question": "Deep Research 的实现逻辑是什么？", "answer_hint": "规划子问题、并行检索、多轮迭代汇总成报告"}
+{"id": "agent-01", "section": "xiaolinnote/agent", "page_id": "xiaolinnote/agent/5_react", "question": "ReAct 具体是怎么实现的？", "answer_hint": "Thought-Action-Observation 循环，把推理和工具调用交替进行"}
+{"id": "agent-02", "section": "xiaolinnote/agent", "page_id": "xiaolinnote/agent/8_memory", "question": "Agent 的记忆机制在实际开发中应该怎么设计？", "answer_hint": "分短期/长期，写入与检索策略，压缩与遗忘"}
+{"id": "agent-03", "section": "xiaolinnote/agent", "page_id": "xiaolinnote/agent/20_loop_stability", "question": "Agent 为什么会陷入死循环、重复调用同一个工具？", "answer_hint": "缺少终止条件与去重检测，需要步数上限、重复检测和状态校验"}
+{"id": "agent-04", "section": "xiaolinnote/agent", "page_id": "xiaolinnote/agent/23_task_hallucination", "question": "怎么防止 Agent 没有真正执行工具就声称任务已经完成了？", "answer_hint": "校验工具执行结果、产物存在性检查、强制证据回传"}
+{"id": "agent-05", "section": "xiaolinnote/agent", "page_id": "xiaolinnote/agent/11_single_multi", "question": "Single-Agent 和 Multi-Agent 应该怎么选？", "answer_hint": "按任务复杂度与可分解性权衡，Multi-Agent 的协作开销与收益"}
+{"id": "hard-01", "section": "xiaolinnote/rag", "page_id": "xiaolinnote/rag/19_dynamic_update", "question": "知识库里的文档天天在变，索引要怎么跟着更新才不出错？", "answer_hint": "增量更新、版本与失效策略、重建与灰度的取舍"}
+{"id": "hard-02", "section": "xiaolinnote/llm", "page_id": "xiaolinnote/llm/temperature_top_p_top_k", "question": "怎么控制模型输出别那么发散，写代码和写文案该怎么调？", "answer_hint": "温度、Top-P、Top-K 的作用与不同场景推荐值"}
+{"id": "hard-03", "section": "xiaolinnote/tools", "page_id": "xiaolinnote/tools/4_what_is_mcp", "question": "我们内部有一堆服务想让模型统一调用，该用什么样的协议？", "answer_hint": "MCP 的定位与核心内容，统一接入外部能力"}
+{"id": "hard-04", "section": "xiaolinnote/langchain", "page_id": "xiaolinnote/langchain/langgraph_advantages", "question": "LangGraph 相比 LangChain 在哪些方面更强，更适合什么场景？", "answer_hint": "图结构、状态管理与循环支持优于线性 Chain，适配复杂 Agent 场景"}
+{"id": "hard-05", "section": "xiaolinnote/agent", "page_id": "xiaolinnote/agent/22_multi_agent_resilience", "question": "多个子 Agent 并行干活时，有的超时了或者同时改同一份数据怎么办？", "answer_hint": "超时与失联处理、并发写冲突的锁与合并策略"}
+{"id": "cc-01", "section": "xiaolinnote/claudecode", "page_id": "xiaolinnote/claudecode/source/cc_grep", "question": "Claude Code 为什么用 grep 而不是 RAG 来做代码检索？", "answer_hint": "代码检索靠精确匹配即可定位，无需语义相似；grep 快且不丢精确结果，向量检索反而可能漏掉符号"}
+{"id": "cc-02", "section": "xiaolinnote/claudecode", "page_id": "xiaolinnote/claudecode/source/cc_memory", "question": "Claude Code 的记忆机制为什么不用向量数据库？", "answer_hint": "记忆条目少且需要精确读取与人工编辑，直接存成 Markdown 文件更可控，也便于用户直接查看和修改"}
+{"id": "cc-03", "section": "xiaolinnote/claudecode", "page_id": "xiaolinnote/claudecode/playbook/cc_claude_md", "question": "CLAUDE.md 应该怎么写？", "answer_hint": "写项目约定与不可从代码推断的信息，控制篇幅、写清「为什么」，避免写成代码结构的复述"}
+{"id": "cc-04", "section": "xiaolinnote/claudecode", "page_id": "xiaolinnote/claudecode/source/cc_multi_agent", "question": "Claude Code 的 SubAgent 是怎么实现的？", "answer_hint": "主 Agent 通过任务工具派生子 Agent，各自持有独立上下文，只把结论回传主上下文，避免污染主循环"}
+{"id": "net-01", "section": "xiaolincoding/network", "page_id": "xiaolincoding/network/1_base/tcp_ip_model", "question": "TCP/IP 网络模型分成几层？每层分别负责什么？", "answer_hint": "应用层、传输层、网络层、网络接口层；分层让每层只关心自己的职责，便于替换与排错"}
+{"id": "net-02", "section": "xiaolincoding/network", "page_id": "xiaolincoding/network/1_base/what_happen_url", "question": "在浏览器输入网址到看到页面，中间发生了什么？", "answer_hint": "DNS 解析 → TCP 握手 → TLS 握手 → 发 HTTP 请求 → 服务端处理并响应 → 浏览器渲染"}
+{"id": "net-03", "section": "xiaolincoding/network", "page_id": "xiaolincoding/network/3_tcp/tcp_interview", "question": "TCP 为什么要三次握手、四次挥手？", "answer_hint": "握手三次是为双向确认收发能力并同步序列号；挥手四次是因为服务端的 ACK 与 FIN 不能合并"}
+{"id": "net-04", "section": "xiaolincoding/network", "page_id": "xiaolincoding/network/2_http/https_rsa", "question": "HTTPS 的 RSA 握手过程是怎样的？", "answer_hint": "客户端发随机数 → 服务端回证书与随机数 → 客户端校验证书、用公钥加密预主密钥 → 双方推导会话密钥"}
+{"id": "os-01", "section": "xiaolincoding/os", "page_id": "xiaolincoding/os/3_memory/vmem", "question": "为什么需要虚拟内存？", "answer_hint": "隔离进程地址空间、让程序不必关心物理布局、支持内存超售与按需换页"}
+{"id": "os-02", "section": "xiaolincoding/os", "page_id": "xiaolincoding/os/8_network_system/selete_poll_epoll", "question": "select、poll、epoll 有什么区别？", "answer_hint": "select 有 fd 数量上限且每次要重置集合，poll 去掉了上限，epoll 用事件回调避免全量遍历"}
+{"id": "os-03", "section": "xiaolincoding/os", "page_id": "xiaolincoding/os/4_process/deadlock", "question": "怎么避免死锁？", "answer_hint": "破坏四个必要条件之一；常用做法是统一加锁顺序、加锁带超时、一次申请全部资源"}
+{"id": "os-04", "section": "xiaolincoding/os", "page_id": "xiaolincoding/os/8_network_system/zero_copy", "question": "什么是零拷贝？", "answer_hint": "让数据在内核态直接送达目标，省掉用户态与内核态之间的多次拷贝与上下文切换，如 sendfile、mmap"}
+{"id": "mysql-01", "section": "xiaolincoding/mysql", "page_id": "xiaolincoding/mysql/index/why_index_chose_bpuls_tree", "question": "MySQL 为什么用 B+ 树而不是 B 树或红黑树做索引？", "answer_hint": "B+ 树非叶子节点不存数据、扇出大、树高更低，叶子节点成链便于范围查询"}
+{"id": "mysql-02", "section": "xiaolincoding/mysql", "page_id": "xiaolincoding/mysql/transaction/mvcc", "question": "事务隔离级别是怎么实现的？", "answer_hint": "靠 MVCC 的版本链与 ReadView 判断可见性，配合锁来实现不同隔离级别"}
+{"id": "mysql-03", "section": "xiaolincoding/mysql", "page_id": "xiaolincoding/mysql/log/how_update", "question": "undo log、redo log、binlog 分别有什么用？", "answer_hint": "undo log 支持回滚与 MVCC；redo log 保证崩溃恢复的持久性；binlog 用于归档与主从复制"}
+{"id": "mysql-04", "section": "xiaolincoding/mysql", "page_id": "xiaolincoding/mysql/lock/deadlock", "question": "MySQL 死锁了怎么办？", "answer_hint": "InnoDB 会检测死锁并回滚代价小的事务；根治要分析加锁顺序、缩短事务、给查询走对索引"}
+{"id": "redis-01", "section": "xiaolincoding/redis", "page_id": "xiaolincoding/redis/storage/aof", "question": "AOF 持久化是怎么实现的？", "answer_hint": "先写内存再记命令日志，按 always/everysec/no 三种刷盘策略落盘，文件过大时重写压缩"}
+{"id": "redis-02", "section": "xiaolincoding/redis", "page_id": "xiaolincoding/redis/data_struct/data_struct", "question": "Redis 的数据结构是怎么实现的？", "answer_hint": "对外是字符串、哈希、列表、集合、有序集合，底层用 SDS、压缩列表、跳表、哈希表等按规模切换编码"}
+{"id": "redis-03", "section": "xiaolincoding/redis", "page_id": "xiaolincoding/redis/cluster/cache_problem", "question": "什么是缓存雪崩、击穿、穿透？", "answer_hint": "雪崩是大量键同时过期；击穿是热点键失效；穿透是查不存在的数据，分别用随机过期、互斥重建、布隆过滤器应对"}
+{"id": "redis-04", "section": "xiaolincoding/redis", "page_id": "xiaolincoding/redis/cluster/cluster", "question": "为什么要有 Redis Cluster？", "answer_hint": "单机容量与吞吐有上限，Cluster 用哈希槽分片把数据摊到多节点，并支持故障转移"}
+{"id": "out-001", "section": "life", "page_id": "out-001", "question": "红烧肉的正宗家常做法是什么？", "expect_rejected": true}
+{"id": "out-002", "section": "general", "page_id": "out-002", "question": "全国两会一般什么时候召开？", "expect_rejected": true}
+{"id": "out-003", "section": "sports", "page_id": "out-003", "question": "世界杯夺冠的热门球队有哪些？", "expect_rejected": true}
+{"id": "out-004", "section": "life", "page_id": "out-004", "question": "装修一套 120 平的房子大概要花多少钱？", "expect_rejected": true}
+{"id": "rare-01", "section": "xiaolinnote/llm", "page_id": "xiaolinnote/llm/tokenizer", "question": "大模型的分词器原理是什么？BPE 字节对编码是干嘛的？"}
+{"id": "rare-02", "section": "xiaolincoding/os", "page_id": "xiaolincoding/os/1_hardware/cpu_mesi", "question": "CPU 缓存一致性怎么保证？MESI 协议里缓存行有哪几个状态？"}
+{"id": "rare-03", "section": "xiaolincoding/redis", "page_id": "xiaolincoding/redis/storage/bigkey_aof_rdb", "question": "Redis 大 Key 对 AOF 和 RDB 持久化有什么影响？"}
+{"id": "rare-04", "section": "xiaolinnote/tools", "page_id": "xiaolinnote/tools/12_a2a_protocol", "question": "A2A 协议是什么？它和 MCP 协议有什么区别？"}
+{"id": "rare-05", "section": "xiaolinnote/llm", "page_id": "xiaolinnote/llm/position_encoding", "question": "大模型的位置编码是干嘛的？sin/cos、RoPE、ALiBi 有什么区别？"}
+{"id": "rare-06", "section": "xiaolinnote/rag", "page_id": "xiaolinnote/rag/16_graph_db", "question": "什么场景下会用图数据库增强向量检索？知识图谱怎么和 RAG 结合？"}
+{"id": "rare-07", "section": "xiaolincoding/network", "page_id": "xiaolincoding/network/3_tcp/isn_deff", "question": "为什么 TCP 每次建立连接时初始序列号 ISN 都要不一样？"}
+{"id": "rare-08", "section": "xiaolincoding/mysql", "page_id": "xiaolincoding/mysql/base/row_format", "question": "MySQL 一行记录在 InnoDB 里是怎么存储的？行格式怎么组织？"}

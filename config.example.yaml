@@ -1,0 +1,52 @@
+# 小林面试笔记 RAG 问答系统配置（复制为 config.yaml 后使用；密钥放 .env）
+# 路径可用相对项目根目录的相对路径
+
+kb_dir: kb                 # 项目内的知识库副本（markdown + assets/），不进 git
+index_dir: data/index
+
+models:
+  embedding_base_url: https://api.siliconflow.cn/v1
+  embedding_model: Qwen/Qwen3-Embedding-8B
+  rerank_base_url: https://api.siliconflow.cn/v1
+  rerank_model: BAAI/bge-reranker-v2-m3
+  chat_base_url: https://opencode.ai/zen/go/v1
+  chat_model: deepseek-v4.1-flash
+  judge_model: deepseek-v4.1-flash   # 评估裁判（与对话模型同档）
+  chat_temperature: 0.3
+  # 少数网关要求客户端在请求头里声明会话标识，缺失时其路由层直接返回 400。
+  # 这个值由客户端自行生成，不参与鉴权（鉴权仍是 .env 里的 API Key）。
+  # 换成不需要该头的网关时，整段删掉即可。
+  chat_extra_headers:
+    x-opencode-session: 00000000-0000-4000-8000-000000000000
+
+chunking:
+  child_target: 300        # 子块目标字数
+  child_max: 500           # 子块上限
+  parent_target: 900       # 父块目标字数
+  parent_max: 1200         # 父块上限
+  context_max_chars: 100   # Contextual Retrieval 背景限长
+
+contextual:
+  enabled: true
+  concurrency: 4
+  interval_seconds: 0.5    # 每请求间隔限速
+
+retrieval:
+  vec_top_k: 20
+  bm25_top_k: 20
+  rrf_k: 60
+  rerank_top_n: 40         # 送重排的候选数
+  final_n: 5               # 进入生成的父块数
+  # 门控阈值：重排最高分低于此值直接拒答。
+  # 实测校准（30 道库内问题 vs 7 道库外问题）：库内最低 0.574，库外最高 0.044，
+  # 阈值取两者之间偏保守的 0.3（距库外噪声 6.8 倍，距最弱合法问题仍留 1.9 倍余量）。
+  gate_threshold: 0.3
+
+webui:
+  server_name: 127.0.0.1
+  server_port: 7860
+
+multi_query:
+  enabled: true              # 检索前把用户 query 拆成多个角度分别检索（docs 12 方法四 / 13 第三路）
+  num_queries: 4             # 检索 query 总数，含原始 query（docs 14：原 query 必须保留、恒在首位）
+  temperature: 0.2           # 展开生成低温，控制多样性与稳定性

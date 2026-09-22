@@ -1,0 +1,21 @@
+# 密钥与本地配置
+.env
+config.yaml
+
+# 索引产物
+data/
+
+# 知识库副本：爬取的内容（含出处），且体积近 800 MB，不进 git / 不上传 GitHub
+kb/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# spec 轮次归档：含出处字眼，本地保留，不进 git / 不上传 GitHub
+spec-archive/
+
+# 面试准备材料：含话术与出处，本地保留，不进 git / 不上传 GitHub
+interview/

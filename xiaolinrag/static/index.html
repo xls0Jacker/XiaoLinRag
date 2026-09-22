@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小林面试笔记 RAG 问答</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="masthead">
+  <p class="masthead-kicker">RAG 问答</p>
+  <h1>小林面试笔记</h1>
+  <p class="masthead-sub">答案只依据笔记内容生成，并附上引用出处。</p>
+  <p class="masthead-meta" id="meta-line" aria-live="polite"></p>
+</header>
+
+<main>
+
+  <form class="composer" id="ask-form">
+    <label class="field-label" for="question">你的问题</label>
+    <textarea id="question" name="question" rows="3" maxlength="500"
+              placeholder="例如：父子切割为什么要分子块和父块？"></textarea>
+
+    <fieldset class="filters">
+      <legend class="field-label">检索范围</legend>
+      <div class="chips" id="sections"></div>
+      <p class="hint">不选则检索全库</p>
+    </fieldset>
+
+    <div class="composer-actions">
+      <label class="switch">
+        <input type="checkbox" id="debug-toggle">
+        <span>显示检索细节</span>
+      </label>
+      <button type="submit" id="submit" disabled>提问</button>
+    </div>
+
+    <p class="error" id="form-error" role="alert" hidden></p>
+  </form>
+
+  <section class="answer">
+    <h2 class="section-title">回答</h2>
+    <p class="status" id="status" role="status" hidden></p>
+    <div class="callout" id="answer-callout" hidden></div>
+    <div class="prose" id="answer-prose">
+      <p class="placeholder">输入问题后点击「提问」。回答会标出引用编号，可在下方查看出处原文。</p>
+    </div>
+  </section>
+
+  <section class="citations" id="citations-section" hidden>
+    <h2 class="section-title">引用出处</h2>
+    <ol class="citation-list" id="citations-list"></ol>
+  </section>
+
+  <section class="debug" id="debug-section" hidden>
+    <h2 class="section-title">检索细节</h2>
+    <pre class="debug-output" id="debug-output"></pre>
+  </section>
+
+</main>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>
